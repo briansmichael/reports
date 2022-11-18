@@ -15,6 +15,6 @@
  */
 
 /**
- * Model classes.
+ * Validation classes.
  */
-package com.starfireaviation.reports.exception;
+package com.starfireaviation.reports.validation;

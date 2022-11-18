@@ -16,7 +16,7 @@
 
 package com.starfireaviation.reports;
 
-import com.starfireaviation.model.CommonConstants;
+import com.starfireaviation.common.CommonConstants;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

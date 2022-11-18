@@ -16,11 +16,10 @@
 
 package com.starfireaviation.reports.service;
 
-import com.starfireaviation.reports.exception.ResourceNotFoundException;
-import com.starfireaviation.model.Question;
-import com.starfireaviation.model.Quiz;
-import com.starfireaviation.model.User;
-import com.starfireaviation.model.CommonConstants;
+import com.starfireaviation.common.exception.ResourceNotFoundException;
+import com.starfireaviation.common.model.Quiz;
+import com.starfireaviation.common.model.User;
+import com.starfireaviation.common.CommonConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -33,7 +32,8 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +111,7 @@ public class ReportService {
      */
     public JFreeChart getQuizCompletionChart(final Long quizId) throws ResourceNotFoundException {
         final Quiz quiz = dataService.getQuiz(quizId);
-        final List<Question> questions = getQuizQuestions(quiz);
+        final List<Long> questions = getQuizQuestions(quiz);
 
         // Build dataset
         final List<Long> quizParticipants = new ArrayList<>();
@@ -164,7 +164,7 @@ public class ReportService {
     public JFreeChart getQuizUserResultsChart(final Long quizId, final Long userId) throws ResourceNotFoundException {
         final Quiz quiz = dataService.getQuiz(quizId);
         final User user = dataService.getUser(userId);
-        final List<Question> questions = getQuizQuestions(quiz);
+        final List<Long> questions = getQuizQuestions(quiz);
 
         // Build dataset
         int answeredCorrectly = 0;
@@ -215,7 +215,7 @@ public class ReportService {
      */
     public JFreeChart getQuizResultsChart(final Long quizId) throws ResourceNotFoundException {
         final Quiz quiz = dataService.getQuiz(quizId);
-        final List<Question> questions = getQuizQuestions(quiz);
+        final List<Long> questions = getQuizQuestions(quiz);
         final Map<Long, Integer> questionIdMap = buildQuestionIdMap(questions);
 
         // Build dataset
@@ -326,11 +326,11 @@ public class ReportService {
      * @return list of questions
      * @throws ResourceNotFoundException when quiz or quiz questions are not found
      */
-    private static List<Question> getQuizQuestions(final Quiz quiz) throws ResourceNotFoundException {
+    private static List<Long> getQuizQuestions(final Quiz quiz) throws ResourceNotFoundException {
         if (quiz == null) {
             throw new ResourceNotFoundException("Quiz not found");
         }
-        final List<Question> questions = quiz.getQuestions();
+        final List<Long> questions = quiz.getQuestionIds();
         if (questions == null) {
             throw new ResourceNotFoundException("Quiz questions not found");
         }
@@ -340,14 +340,14 @@ public class ReportService {
     /**
      * Builds a question id map.
      *
-     * @param questions list of questions
+     * @param questionIds list of questionIds
      * @return Map
      */
-    private static Map<Long, Integer> buildQuestionIdMap(final List<Question> questions) {
+    private static Map<Long, Integer> buildQuestionIdMap(final List<Long> questionIds) {
         final Map<Long, Integer> questionIdMap = new HashMap<>();
         int count = 0;
-        for (final Question question : questions) {
-            questionIdMap.put(question.getId(), count++);
+        for (final Long questionId : questionIds) {
+            questionIdMap.put(questionId, count++);
         }
         return questionIdMap;
     }

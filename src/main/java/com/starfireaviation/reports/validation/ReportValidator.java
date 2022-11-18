@@ -16,10 +16,10 @@
 
 package com.starfireaviation.reports.validation;
 
-import com.starfireaviation.model.Role;
-import com.starfireaviation.model.User;
-import com.starfireaviation.reports.exception.AccessDeniedException;
-import com.starfireaviation.reports.exception.ResourceNotFoundException;
+import com.starfireaviation.common.model.Role;
+import com.starfireaviation.common.model.User;
+import com.starfireaviation.common.exception.AccessDeniedException;
+import com.starfireaviation.common.exception.ResourceNotFoundException;
 import com.starfireaviation.reports.service.DataService;
 import lombok.extern.slf4j.Slf4j;
 

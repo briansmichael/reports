@@ -16,11 +16,11 @@
 
 package com.starfireaviation.reports.controller;
 
-import com.starfireaviation.reports.exception.AccessDeniedException;
-import com.starfireaviation.reports.exception.ResourceNotFoundException;
+import com.starfireaviation.common.exception.AccessDeniedException;
+import com.starfireaviation.common.exception.ResourceNotFoundException;
 import com.starfireaviation.reports.service.ReportService;
 import com.starfireaviation.reports.validation.ReportValidator;
-import com.starfireaviation.model.CommonConstants;
+import com.starfireaviation.common.CommonConstants;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.springframework.http.MediaType;
@@ -40,7 +40,7 @@ import java.security.Principal;
  */
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping({ "/reports" })
+@RequestMapping({ "/api/reports" })
 public class ReportController {
 
         /**

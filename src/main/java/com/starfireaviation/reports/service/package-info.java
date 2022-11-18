@@ -14,21 +14,7 @@
  *  limitations under the License.
  */
 
-package com.starfireaviation.reports;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class ReportsApplication {
-
-    /**
-     * Reports application.
-     *
-     * @param args arguments
-     */
-    public static void main(final String[] args) {
-        SpringApplication.run(ReportsApplication.class, args);
-    }
-
-}
+/**
+ * Service classes.
+ */
+package com.starfireaviation.reports.service;
